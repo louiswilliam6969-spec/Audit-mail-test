@@ -19,7 +19,7 @@
     <nav class="gradient-bg p-6 text-white shadow-lg mb-8">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-light tracking-widest uppercase">AMP<span class="font-bold text-blue-400">Audits</span></h1>
-            <div class="text-sm opacity-80 font-medium">Partner Portal v5.0</div>
+            <div class="text-sm opacity-80 font-medium">Partner Portal v6.0</div>
         </div>
     </nav>
 
@@ -31,17 +31,17 @@
                 <i class="fas fa-search absolute left-4 top-5 text-slate-300 text-xl"></i>
             </div>
             
-            <div onclick="toggleListView()" class="bg-blue-600 rounded-3xl p-6 text-white flex items-center justify-between shadow-xl cursor-pointer hover:bg-blue-700 transition-all active:scale-95">
+            <div onclick="toggleListView()" class="bg-blue-600 rounded-3xl p-6 text-white flex items-center justify-between shadow-xl cursor-pointer hover:scale-[1.02] transition-all active:scale-95">
                 <div>
                     <p class="text-xs uppercase opacity-70 font-bold tracking-widest">Active Engagements</p>
                     <p id="totalCount" class="text-4xl font-bold">0</p>
-                    <p class="text-[10px] mt-1 opacity-60 italic">Click to view full tracker</p>
+                    <p class="text-[10px] mt-1 opacity-60 italic">Click to view engagement tracker</p>
                 </div>
                 <i class="fas fa-list-ul text-4xl opacity-30"></i>
             </div>
         </div>
 
-        <div id="listViewPanel" class="hidden mb-8 glass rounded-3xl overflow-hidden shadow-2xl border border-blue-100 animate-in fade-in duration-300">
+        <div id="listViewPanel" class="hidden mb-8 glass rounded-3xl overflow-hidden shadow-2xl border border-blue-100">
             <div class="bg-blue-50 p-4 border-b border-blue-100 flex justify-between items-center">
                 <h3 class="font-bold text-blue-800 uppercase text-xs tracking-widest">Firm-Wide Engagement Tracker</h3>
                 <button onclick="toggleListView()" class="text-blue-400 hover:text-blue-800 text-xl">&times;</button>
@@ -50,7 +50,7 @@
                 <table class="w-full text-left border-collapse">
                     <thead class="bg-slate-50 text-[10px] uppercase text-slate-400 font-bold">
                         <tr>
-                            <th class="p-4">Client Name</th>
+                            <th class="p-4">Client</th>
                             <th class="p-4">Partner</th>
                             <th class="p-4">Duration</th>
                             <th class="p-4">Status</th>
@@ -62,9 +62,9 @@
         </div>
 
         <div class="flex gap-8 mb-6 border-b border-slate-200 px-2">
-            <button onclick="setTab('ALL')" id="tabALL" class="pb-3 text-sm tab-active transition-all">All Audits</button>
-            <button onclick="setTab('Completed')" id="tabCompleted" class="pb-3 text-sm text-slate-500 transition-all">Completed</button>
-            <button onclick="setTab('Pending')" id="tabPending" class="pb-3 text-sm text-slate-500 transition-all">In Progress</button>
+            <button onclick="setTab('ALL')" id="tabALL" class="pb-3 text-sm tab-active">All Audits</button>
+            <button onclick="setTab('Completed')" id="tabCompleted" class="pb-3 text-sm text-slate-500">Completed</button>
+            <button onclick="setTab('Pending')" id="tabPending" class="pb-3 text-sm text-slate-500">In Progress</button>
         </div>
 
         <div id="auditContainer" class="grid grid-cols-1 gap-4 pb-12"></div>
@@ -80,28 +80,25 @@
             <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="md:col-span-2 space-y-6">
                     <section>
-                        <h4 class="text-slate-400 uppercase text-xs font-bold mb-3 tracking-widest">Audit Scope</h4>
+                        <h4 class="text-slate-400 uppercase text-xs font-bold mb-3 tracking-widest text-slate-400">Audit Scope</h4>
                         <p id="modalDesc" class="text-slate-700 italic text-sm">--</p>
                     </section>
                     <section>
-                        <h4 class="text-slate-400 uppercase text-xs font-bold mb-3 tracking-widest">Assigned Team</h4>
+                        <h4 class="text-slate-400 uppercase text-xs font-bold mb-3 tracking-widest text-slate-400">Assigned Team</h4>
                         <div id="modalTeam" class="flex gap-4"></div>
                     </section>
                 </div>
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <h4 class="text-slate-800 font-bold mb-4 text-xs uppercase tracking-widest">Resources</h4>
+                    <h4 class="text-slate-800 font-bold mb-4 text-xs uppercase tracking-widest text-slate-800">Resources</h4>
                     <div class="space-y-3">
-                        <a id="modalFolder" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-500 transition text-slate-700 group">
+                        <a id="modalFolder" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-500 transition text-slate-700">
                             <span class="flex items-center gap-3"><i class="fas fa-folder-open text-amber-500"></i><span class="font-bold text-xs">Working Folder</span></span>
-                            <i class="fas fa-external-link-alt text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
                         </a>
-                        <a id="modalChecklist" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-400 transition text-slate-700 group">
+                        <a id="modalChecklist" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-blue-400 transition text-slate-700">
                             <span class="flex items-center gap-3"><i class="fas fa-tasks text-blue-400"></i><span class="font-bold text-xs">Audit Checklist</span></span>
-                            <i class="fas fa-external-link-alt text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
                         </a>
-                        <a id="modalReport" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-green-500 transition text-slate-700 group">
+                        <a id="modalReport" href="#" target="_blank" class="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-green-500 transition text-slate-700">
                             <span class="flex items-center gap-3"><i class="fas fa-file-excel text-green-600"></i><span class="font-bold text-xs">Final Report</span></span>
-                            <i class="fas fa-external-link-alt text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
                         </a>
                     </div>
                 </div>
@@ -110,7 +107,7 @@
     </div>
 
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRGzHkHY-7FP7s1cAC0BLRo3EENu8nHvUZxGbkBVeBAcaYlZGDWj_B8fjswfe6y3kcdBgo3h8IoeenL/pub?output=csv'; // Ensure link ends in &output=csv
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRGzHkHY-7FP7s1cAC0BLRo3EENu8nHvUZxGbkBVeBAcaYlZGDWj_B8fjswfe6y3kcdBgo3h8IoeenL/pub?output=csv'; // MUST end in &output=csv
         let audits = []; let currentTab = 'ALL';
 
         function loadData() {
@@ -132,7 +129,6 @@
             
             document.getElementById('totalCount').innerText = filtered.length;
             
-            // Render Table Rows
             tableBody.innerHTML = filtered.map(a => `
                 <tr class="border-b border-slate-50 hover:bg-slate-50 transition">
                     <td class="p-4 font-bold text-slate-700">${a.Name}</td>
@@ -143,7 +139,6 @@
                     </td>
                 </tr>`).join('');
 
-            // Render Card List
             container.innerHTML = filtered.map(a => {
                 const days = getDaysRemaining(a.Deadline);
                 let badge = (a.Status === 'Pending' && days !== null) ? (days < 0 ? `<span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-[10px] font-bold ml-2">OVERDUE</span>` : `<span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full text-[10px] font-bold ml-2">${days} Days Left</span>`) : '';
@@ -175,12 +170,11 @@
             document.getElementById('modalTarget').innerText = a.Deadline ? `| Target: ${a.Deadline}` : "";
             document.getElementById('modalDesc').innerText = a.Description || "Project documentation.";
             
-            // Resource Links
+            // Link setup
             const folder = document.getElementById('modalFolder'); folder.href = a.Folder || "#"; folder.target = "_blank";
             const report = document.getElementById('modalReport'); report.href = a.Report || "#"; report.target = "_blank";
             const checklist = document.getElementById('modalChecklist'); checklist.href = a.Checklist || "#"; checklist.target = "_blank";
 
-            // Team Initials
             const team = a.Team ? a.Team.split(',') : [];
             document.getElementById('modalTeam').innerHTML = team.map(n => `
                 <div class="text-center">
